@@ -133,3 +133,4 @@ venv.bak/
 
 # meta file
 data_list/*.txt
+*.pt

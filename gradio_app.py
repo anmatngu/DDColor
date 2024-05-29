@@ -93,28 +93,28 @@ class ImageColorizationPipeline(object):
 
 # Initialize
 colorizer = ImageColorizationPipeline(model_path=model_path,
-                                      input_size=input_size,
-                                      model_size=model_size)
+                                    input_size=input_size,
+                                    model_size=model_size)
 
 
 # Create inference function for gradio app
 def colorize(img):
-  image_out = colorizer.process(img)
-  # Generate a unique filename using UUID
-  unique_imgfilename = str(uuid.uuid4()) + '.png'
-  cv2.imwrite(unique_imgfilename, image_out)
-  return (img, unique_imgfilename)
+    image_out = colorizer.process(img)
+    # Generate a unique filename using UUID
+    unique_imgfilename = str(uuid.uuid4()) + '.png'
+    cv2.imwrite(unique_imgfilename, image_out)
+    return (img, unique_imgfilename)
 
 
 # Gradio demo using the Image-Slider custom component
 with gr.Blocks() as demo:
-  with gr.Row():
-    with gr.Column():
-      bw_image = gr.Image(label='Black and White Input Image')
-      btn = gr.Button('Convert using DDColor')
-    with gr.Column():
-      col_image_slider = ImageSlider(position=0.5,
-                                     label='Colored Image with Slider-view')
+    with gr.Row():
+        with gr.Column():
+            bw_image = gr.Image(label='Black and White Input Image')
+            btn = gr.Button('Convert using DDColor')
+        with gr.Column():
+            col_image_slider = ImageSlider(position=0.5, label='Colored Image with Slider-view')
 
-  btn.click(colorize, bw_image, col_image_slider)
+    btn.click(colorize, bw_image, col_image_slider)
+    
 demo.launch()
