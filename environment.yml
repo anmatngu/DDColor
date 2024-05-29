@@ -1,11 +1,10 @@
 name: DeGray  # Choose your environment name
 channels:
+  - defaults
   - conda-forge
   - pytorch
   - nvidia
-  - menpo
   - bioconda
-  - defaults
 dependencies:
   - pip
   - dlib=19.24.2
@@ -14,6 +13,9 @@ dependencies:
   - opencv=4.7.0
   - ffmpeg=5.1.2
   - pillow=10.1.0
+  - python_abi
+  - libjpeg-turbo
+  - jpeg
   - pyyaml=6.0.1
   - requests=2.31.0
   - scipy=1.9.1
